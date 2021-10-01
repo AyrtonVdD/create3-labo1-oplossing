@@ -64,6 +64,9 @@
     --global-input-hover-borderColor: var(--global-color-neutral-xx-light);
     --global-input-focus-borderColor: var(--global-color-alpha);
     --global-input-boxShadow: 0 0 0 3px var(--global-color-alpha-x-transparent);
+
+    /* transition */
+    --transition-alpha: 0.1s ease-in-out;
 }
 
 /*------------------------------------*\
@@ -648,6 +651,12 @@ input::placeholder {
 }
 .c-custom-option{
     display: flex;
+    --custom-option-borderColor: var(--global-input-borderColor);
+    --custom-option-focus-borderColor: var(--global-input-focus-borderColor);
+}
+
+.c-custom-option:hover{
+    --custom-option-borderColor: var(--custom-option-hover-borderColor);
 }
 
 .c-custom-option__fake-input{
@@ -659,7 +668,7 @@ input::placeholder {
     width: var(--c-custom-option__fake-input-size);
     height: var(--c-custom-option__fake-input-size);
 
-    border: var(--global-borderWidth) solid var(--global-input-borderColor);
+    border: 1px solid var(--custom-option-borderColor);
     margin-right: 8px;
 }
 
@@ -675,12 +684,7 @@ input::placeholder {
     display: none;
 }
 
-.c-custom-option__symbol{
-    opacity: 0;
-}
-.c-option--hidden:checked + .c-custom-option .c-custom-option__symbol{
-    opacity: 1;
-}
+
 
 .c-custom-option__fake-input--checkbox .c-custom-option__symbol {
     /* Stuff for the checkbox icon... */
@@ -696,6 +700,82 @@ input::placeholder {
     border-radius: 50%;
     background-color: var(--global-color-alpha);
   }
+
+  .c-custom-option__symbol{
+    /* display: none; */
+    opacity: 0;
+    transform: scale(.5);
+    transition: 0.1s ease-in-out;
+    transition-property: opacity, transform;
+}
+
+  .c-option--hidden:checked + .c-custom-option .c-custom-option__symbol{
+    opacity: 1;
+    transform: scale(1);
+    /* display: block; */
+}
+  .c-option--hidden:focus-visible + .c-custom-option .c-custom-option__fake-input{
+      border-color: var(--global-input-borderColor);
+      box-shadow: var(--global-input-boxShadow);
+}
+
+.c-option-list{
+    margin-bottom: 24px;
+}
+.c-option-list__item{
+    margin-bottom: 12px;
+}
+.c-costum-toggle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.c-custom-toggle__fake-input{
+    display: block;
+    width: 48px;
+    height: 24px;
+    border-radius: 25px;
+    border: 1px solid var(--global-input-borderColor);
+    background-color: var(--global-color-neutral-xxxx-light);
+}
+.c-custom-toggle__fake-input:active{
+    border: 1px solid var(--global-color-alpha-dark);
+}
+
+.c-custom-toggle__fake-input::after{
+    display: block;
+    width: 22px;
+    height: 22px;
+    box-shadow: red;
+    border-radius: 25px;
+    background-color: white;
+    
+    content: '';
+    transition: all var(--transition-alpha);
+
+}
+
+.c-option:checked + .c-custom-toggle .c-custom-toggle__fake-input::after{
+    transform: translateX(25px); 
+    transition: all var(--transition-alpha);
+}
+.c-option:checked + .c-custom-toggle .c-custom-toggle__fake-input{
+    background-color: var(--global-color-alpha); 
+    transition: all var(--transition-alpha);
+}
+
+.c-option--hidden:focus-visible + .c-custom-toggle .c-custom-option__fake-input{
+    border-color: var(--global-input-borderColor);
+    box-shadow: var(--global-input-boxShadow);
+    transition: all var(--transition-alpha);
+}
+
+.c-option--hidden:active + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    border: 1px solid var(--global-color-alpha-dark);
+}
+.c-option--hidden:active:checked + .c-custom-toggle .c-custom-toggle__fake-input::after {
+    border: 1px solid var(--global-color-alpha-dark);
+}
 
 /*
     Component: Label
