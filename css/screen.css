@@ -90,6 +90,7 @@ html {
     -moz-osx-font-smoothing: grayscale;    
 }
 
+
 *,
 *:before,
 *:after {
@@ -797,6 +798,20 @@ input::placeholder {
 }
 .c-option--hidden > .c-toggle-label--inverted > .c-custom-toggle__fake-input{
     justify-content: flex-end;
+}
+
+/* Costum selector */
+.c-custom-select{
+    display: block;
+    position: relative;
+}
+.c-custom-select__symbol{
+    width: 24px;
+    height: 24px;
+    fill: var(--global-color-neutral-x-light);
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 /*
