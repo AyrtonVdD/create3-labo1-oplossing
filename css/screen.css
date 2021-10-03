@@ -725,7 +725,7 @@ input::placeholder {
 .c-option-list__item{
     margin-bottom: 12px;
 }
-.c-costum-toggle{
+.c-custom-toggle{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -737,9 +737,11 @@ input::placeholder {
     border-radius: 25px;
     border: 1px solid var(--global-input-borderColor);
     background-color: var(--global-color-neutral-xxxx-light);
+    margin-right: 16px;
 }
-.c-custom-toggle__fake-input:active{
+.c-custom-toggle__fake-input:active:focus{
     border: 1px solid var(--global-color-alpha-dark);
+    box-shadow: var(--global-input-boxShadow);
 }
 
 .c-custom-toggle__fake-input::after{
@@ -749,7 +751,6 @@ input::placeholder {
     box-shadow: red;
     border-radius: 25px;
     background-color: white;
-    
     content: '';
     transition: all var(--transition-alpha);
 
@@ -758,10 +759,12 @@ input::placeholder {
 .c-option:checked + .c-custom-toggle .c-custom-toggle__fake-input::after{
     transform: translateX(25px); 
     transition: all var(--transition-alpha);
+    border: var(--global-borderWidth) solid var(--global-color-alpha-dark);
 }
 .c-option:checked + .c-custom-toggle .c-custom-toggle__fake-input{
     background-color: var(--global-color-alpha); 
     transition: all var(--transition-alpha);
+    border: var(--global-borderWidth) solid var(--global-color-alpha-dark);
 }
 
 .c-option--hidden:focus-visible + .c-custom-toggle .c-custom-option__fake-input{
@@ -775,6 +778,25 @@ input::placeholder {
 }
 .c-option--hidden:active:checked + .c-custom-toggle .c-custom-toggle__fake-input::after {
     border: 1px solid var(--global-color-alpha-dark);
+}
+
+/* List items */
+.c-toggle-list > .c-toggle-list__item{
+    margin-bottom: 12px;
+}
+
+.c-toggle-list > .c-toggle-list__item + .c-toggle-list__item{
+    border-top: var(--global-borderWidth) solid var(--global-color-neutral-xxx-light);
+    padding-top: 12px;
+}
+.c-toggle-label--inverted{
+    display: flex;
+    margin-right: 0px;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+.c-option--hidden > .c-toggle-label--inverted > .c-custom-toggle__fake-input{
+    justify-content: flex-end;
 }
 
 /*
